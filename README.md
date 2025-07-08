@@ -51,3 +51,6 @@ spa/
 - `npm run dev`: Inicia el servidor de desarrollo con Vite
 
 
+npm install
+
+
