@@ -1,4 +1,3 @@
-
 import { get } from "./service.js";
 
 const urlUsers = "http://localhost:3000/Usuarios";
@@ -7,6 +6,7 @@ const routes = {
   "/": "./users.html",
   "/users": "./users.html",
   "/newuser": "./newuser.html",
+  "/edituser": "./edituser.html",
   "/about": "./about.html",
 };
 
@@ -50,8 +50,30 @@ async function renderUsers(){
     <p> <strong style="color: red">Celular:</strong> ${user.phone}</p>
     <p> <strong style="color: red">Número de inscripción:</strong> ${user.enrollNumber}</p>
     <p> <strong style="color: red">Fecha de admision:</strong> ${user.dateOfAdmission}</p>
+    <button class="edit-btn" data-id=${user.id}>Editar</button>
+    <button class="delete-btn" data-id=${user.id}>Delete</button>
     </div> `
   });
   console.log(userData);
+
+  let buttons = document.querySelectorAll(".delete-btn")
+  buttons.forEach(btn => {
+    btn.addEventListener("click", async(e) => {
+      e.preventDefault()
+      let id = btn.dataset.id
+      let deletUser = await defaultServerConditions(urlUsers, id)
+
+    })
+  })
+
+  let editButtons = document.querySelectorAll(".edit-btn");
+  editButtons.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const id = btn.dataset.id;
+      navigate(`/edituser`)
+      
+    })
+  })
 }
 

@@ -82,6 +82,18 @@ form#new-user-form {
     margin: 0 auto;
 }
 
+form#edit-user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #ffffff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
 form#new-user-form label {
     font-weight: bold;
     color: #2c3e50;
