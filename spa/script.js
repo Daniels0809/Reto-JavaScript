@@ -1,4 +1,4 @@
-import { get } from "./service.js";
+import { get, deletes } from "./service.js";
 
 const urlUsers = "http://localhost:3000/Usuarios";
 
@@ -27,9 +27,16 @@ async function navigate(pathname) {
     renderUsers();
   }
 
-  if (pathname === "/newuser") {
+  if (pathname == "/newuser") {
     const { setupNewUser } = await import("./newuser.js");
     setupNewUser(); // Ejecuta la función para inicializar el formulario
+  }
+
+  if(pathname == "/edituser"){
+    const ulrParams = new URLSearchParams(window.location.search);
+    const userId = ulrParams.get("id");
+    const { setupEditUser } = await import("./edituser.js");
+    setupEditUser(userId);
   }
 }
 
@@ -52,28 +59,32 @@ async function renderUsers(){
     <p> <strong style="color: red">Fecha de admision:</strong> ${user.dateOfAdmission}</p>
     <button class="edit-btn" data-id=${user.id}>Editar</button>
     <button class="delete-btn" data-id=${user.id}>Delete</button>
-    </div> `
+    </div>`
   });
   console.log(userData);
-
-  let buttons = document.querySelectorAll(".delete-btn")
-  buttons.forEach(btn => {
-    btn.addEventListener("click", async(e) => {
-      e.preventDefault()
-      let id = btn.dataset.id
-      let deletUser = await defaultServerConditions(urlUsers, id)
-
-    })
-  })
-
-  let editButtons = document.querySelectorAll(".edit-btn");
-  editButtons.forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const id = btn.dataset.id;
-      navigate(`/edituser`)
-      
-    })
-  })
 }
 
+document.getElementById("content").addEventListener("click", async (e)=>{
+  if (e.target.matches(".delete-btn")) {
+    e.preventDefault();
+    const id = e.target.dataset.id;
+    if(confirm("Estas seguro que quieres eliminar este usuario?")){
+      try {
+        const deleted = await deletes(urlUsers, id);
+        if (deleted){
+          alert("Usuario eliminado con exito");
+          renderUsers();
+        }else{
+          alert("No se pudo eliminar el usuario.")
+        }
+      } catch (error) {
+        console.error("Error al intentar eliminar el usuario:", error);
+        alert("No se pudo eliminar el usuario.")
+      }
+    }
+  }else if(e.target.matches(".edit-btn")){
+    e.preventDefault();
+    const id = e.target.dataset.id;
+    navigate(`/edituser?id=${id}`);
+  }
+})
