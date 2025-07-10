@@ -6,7 +6,6 @@ const routes = {
   "/": "./users.html",
   "/users": "./users.html",
   "/newuser": "./newuser.html",
-  "/edituser": "./edituser.html",
   "/about": "./about.html",
 };
 
@@ -20,6 +19,7 @@ document.body.addEventListener("click", (e) => {
 async function navigate(pathname) {
   const route = routes[pathname];
   const html = await fetch(route).then((res) => res.text());
+  document.getElementById("content").innerHTML = ""; 
   document.getElementById("content").innerHTML = html;
   history.pushState({}, "", pathname);
 
@@ -38,6 +38,26 @@ async function navigate(pathname) {
     const { setupEditUser } = await import("./edituser.js");
     setupEditUser(userId);
   }
+
+    if (pathname == "/login") {
+    const form = document.getElementById("login-form");
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const username = form.username.value.trim();
+        const password = form.password.value.trim();
+
+        // Aquí se puede validar contra una lista fija o desde localStorage
+        if (username === "admin" && password === "admin123") {
+          localStorage.setItem("loggedUser", JSON.stringify({ username }));
+          alert("✅ Sesión iniciada");
+          navigate("/users");
+        } else {
+          alert("❌ Credenciales incorrectas");
+        }
+      });
+    }
+  }
 }
 
 window.addEventListener("popstate", () =>
@@ -46,7 +66,7 @@ window.addEventListener("popstate", () =>
 
 async function renderUsers(){
   const containeUsers = document.getElementById("container-users");
-  // containeUsers.innerHTML = `<p>Hola</p>`
+  containeUsers.innerHTML = '';
 
   let userData = await get(urlUsers);
   userData.forEach(user => {
@@ -85,6 +105,7 @@ document.getElementById("content").addEventListener("click", async (e)=>{
   }else if(e.target.matches(".edit-btn")){
     e.preventDefault();
     const id = e.target.dataset.id;
-    navigate(`/edituser?id=${id}`);
+    const { setupEditUser } = await import("./edituser.js");
+    setupEditUser(id); // Llama al formulario dinámico
   }
 })

@@ -11,12 +11,28 @@
     <nav>
         <a href="/users" data-link >Users</a>
         <a href="/newuser" data-link >New Users</a>
-        <a href="/edituser" data-link >Edit Users</a>
         <a href="/about" data-link >Acerca de usarios</a>
     </nav>
 
     <main id="content"></main>
-    
+
+    <div id="edit-modal" class="modal hidden">
+    <div class="modal-content">
+        <span id="close-modal" class="close">&times;</span>
+        <h2>Editar Usuario</h2>
+          <form id="edit-user-form">
+          <input type="text" name="name" placeholder="Nombre" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="text" name="phone" placeholder="Celular" required />
+          <input type="text" name="enrollNumber" placeholder="Número de inscripción" required />
+          <input type="date" name="dateOfAdmission" required />
+          <button type="submit">Actualizar Usuario</button>
+        </form>
+        <p id="edit-msg"></p>
+      </div>
+    </div>
+
+
     
 </body>
 <script src="./script.js" type="module"></script>
