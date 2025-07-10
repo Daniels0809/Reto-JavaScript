@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>SPA</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>SPA</title>
 </head>
+
 <body>
+  <div id="app">
     <h1> SPA </h1>
     <nav>
-        <a href="/users" data-link >Users</a>
-        <a href="/newuser" data-link >New Users</a>
-        <a href="/about" data-link >Acerca de usarios</a>
+      <a href="/users" data-link>Users</a>
+      <a href="/newuser" data-link>New Users</a>
+      <a href="/about" data-link>Acerca de usarios</a>
     </nav>
-
+    <button id="logout-btn">Cerrar sesión</button>
     <main id="content"></main>
 
     <div id="edit-modal" class="modal hidden">
-    <div class="modal-content">
+      <div class="modal-content">
         <span id="close-modal" class="close">&times;</span>
         <h2>Editar Usuario</h2>
-          <form id="edit-user-form">
+        <form id="edit-user-form">
           <input type="text" name="name" placeholder="Nombre" required />
           <input type="email" name="email" placeholder="Email" required />
           <input type="text" name="phone" placeholder="Celular" required />
@@ -31,9 +35,17 @@
         <p id="edit-msg"></p>
       </div>
     </div>
+  </div>
+  <div id="login-content"></div>
 
-
-    
 </body>
 <script src="./script.js" type="module"></script>
+
 </html>
+
+<!-- quiero hacer un spa con javascript vanilla que incluya solamente los concepto basicos que te voy a mencionar a continuacion:
+enrutamiento
+reactividad
+manipulacion del DOM en tiempo real
+multiples vistas
+Pero no crees muchos archivos y no compliques la puta historia, hazlo y muestrame el paso a paso -->

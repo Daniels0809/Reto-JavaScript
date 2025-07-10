@@ -1,9 +1,9 @@
 {
-  "Usuarios": [
+  "usuarios": [
     {
       "name": "Dani",
-      "email": "doasdk@dsad.com",
-      "phone": "1236666666",
+      "email": "dani@dani.com",
+      "phone": "777777777777",
       "enrollNumber": "1010101010",
       "dateOfAdmission": "2003-07-08",
       "id": "378e"
@@ -14,7 +14,8 @@
       "enrollNumber": "123654789",
       "phone": "301256598",
       "email": "sofia.ddd@sdsa.com",
-      "dateOfAdmission": "2015-06-02"
+      "dateOfAdmission": "2015-06-02",
+      "role": "user"
     },
     {
       "id": "13ee",
@@ -22,7 +23,8 @@
       "enrollNumber": "1233220011",
       "phone": "3213123234123",
       "email": "dav@asss",
-      "dateOfAdmission": "2001-03-02"
+      "dateOfAdmission": "2001-03-02",
+      "role": "user"
     },
     {
       "id": "374c",
@@ -30,7 +32,17 @@
       "enrollNumber": "12132121212",
       "phone": "12321465465",
       "email": "sant@1212",
-      "dateOfAdmission": "1999-02-11"
+      "dateOfAdmission": "1999-02-11",
+      "role": "user"
+    },
+    {
+      "id": "6011",
+      "name": "Dani",
+      "enrollNumber": "1010101010",
+      "phone": "321654987",
+      "email": "nida@nida",
+      "dateOfAdmission": "2001-04-05",
+      "role": "user"
     }
   ]
 }
